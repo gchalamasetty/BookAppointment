@@ -1,0 +1,74 @@
+<!--Modal Pop Up -->
+<div class="modal fade show in danger mymodalstyle">
+  <div class="modal-dialog" role="document">
+    <form [formGroup]="dateForm" (ngSubmit)="submitServiceReservation()">
+      <div class="modal-content">
+        <!--Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title">Book Appointment</h5>
+        </div>
+        <div class="modal-dialog">
+          <div class="modal-body">
+            <!-- Calender View on Input -->
+            <div class="panel panel-default">
+              <div class="panel-body">
+
+                <my-date-picker class="col-lg-6" [id]="selectDate" name="mydate" [options]="myOptions" (dateChanged)="onDateChanged($event)"
+                  required placeholder="Click here to select date" formControlName="selectedDate" (click)="highlightDates()">
+                </my-date-picker>
+              </div>
+            </div>
+            <!-- Display Available time slots -->
+            <div class="panel panel-default">
+              <div class="panel-body" *ngIf="this.displayRadioGroupObject&&this.displayRadioGroupObject.length>0">
+                <table class="table table-responsive">
+                  <thead>
+                    <tr>
+                      <th class="col-lg-1">Select</th>
+                      <th class="col-lg-2">Available Time Slot</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of displayRadioGroupObject">
+                      <td class="col-lg-1">
+                        <input type="radio" id="radioGroup" name="radioGroup" (click)='selectTimeSlot(row)'>
+                      </td>
+                      <td class="col-lg-2">
+                        <span>{{row.startTime}}&nbsp;-&nbsp;{{row.endTime}}&nbsp;{{row.timeSlotDescription}}</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="panel-body col-lg-12" *ngIf="this.displayRadioGroupObject && this.displayRadioGroupObject.length === 0 && (dateForm.controls.selectedDate.value !==''&&dateForm.controls.selectedDate.value !== undefined&&dateForm.controls.selectedDate.value !== null)">
+                <p>
+                  <em>No timeslot is available for the selected day, please select a highlighted day</em>
+                </p>
+              </div>
+            </div>
+            <!-- Booking Review Div -->
+            <div class="panel panel-default" *ngIf="this.displayRadioGroupObject&&this.serviceBookedDateandTime&&this.serviceBookedDateandTime.dayOfWeek&&this.displayRadioGroupObject.length>0">
+              <div class="panel-body">
+                <p>
+                  <b>
+                    <u>Service Booking Review:</u>
+                  </b>
+                </p>
+                <p>
+                  <u>Day:</u>&nbsp;{{serviceBookedDateandTime.dayOfWeek}}&nbsp;-&nbsp;{{serviceBookedDateandTime.date}}&nbsp;(month/date/year)</p>
+                <p>
+                  <u>Time Slot:</u>&nbsp;{{serviceBookedDateandTime.startTime}}&nbsp;-&nbsp;{{serviceBookedDateandTime.endTime}}&nbsp;{{serviceBookedDateandTime.timeSlotDescription}}</p>
+              </div>
+            </div>
+          </div>
+          <!-- Modal Footer with Buttons -->
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-default modalBtn" [disabled]="!(this.displayRadioGroupObject&&this.serviceBookedDateandTime&&this.serviceBookedDateandTime.dayOfWeek&&this.displayRadioGroupObject.length>0)">Submit</button>
+            <button type="button" class="btn btn-default modalBtn" (click)="closeDateTimeSelctionView()">Close Window</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

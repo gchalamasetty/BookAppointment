@@ -1,0 +1,14 @@
+
+/* Importing Bootstarp Styles to whole Application */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+/* Date Picker Current day Style */
+.mydp .markcurrday, .mydp .markcurrmonth, .mydp .markcurryear {
+    text-decoration: none !important;
+    border: 2px solid #4169E1 !important;
+}
+/* Highlighted dates Style */
+.mydp .highlight {
+    color: #228B22 !important;
+    font-size: 20px;
+}

@@ -1,0 +1,15 @@
+.styletheAngularLogo{
+    width:50px;
+    height:50px;
+}
+.textCenter{
+    text-align: center;
+}
+
+.buttonStyling{
+    background: #aa0023;
+    color:#ffffff;
+}
+.buttonStyling:hover{
+    cursor: pointer;
+}

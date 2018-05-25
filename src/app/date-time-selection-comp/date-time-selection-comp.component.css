@@ -1,0 +1,16 @@
+.mymodalstyle {
+  background: rgba(0, 0, 0, .5);
+  transition-delay: 2.5s;
+  transform-origin: center;
+  overflow: auto !important;
+  width: 100% !important;
+}
+
+.modalBtn {
+  background-color: #aa0023;
+  color: #ffffff;
+}
+
+.modal-title{
+  color: #aa0023;
+}
